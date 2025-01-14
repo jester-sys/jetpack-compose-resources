@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    id("kotlin-kapt")
+
 }
 
 android {
@@ -15,7 +15,6 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -28,20 +27,22 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
     buildFeatures {
         compose = true
     }
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -59,24 +60,5 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    dependencies {
-        // Retrofit
-        implementation("com.squareup.retrofit2:retrofit:2.9.0")
-        implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-
-        // Optional: Logging Interceptor for debugging
-        implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
-
-        // Dagger Core
-        implementation("com.google.dagger:dagger:2.48")
-
-        // Dagger Compiler (Annotation Processor)
-        kapt("com.google.dagger:dagger-compiler:2.48")
-
-        // Optional: Dagger Android support
-        implementation("com.google.dagger:dagger-android:2.48")
-        implementation("com.google.dagger:dagger-android-support:2.48") // For support libraries
-        kapt("com.google.dagger:dagger-android-processor:2.48")
-    }
 
 }

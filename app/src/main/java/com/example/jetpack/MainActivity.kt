@@ -5,14 +5,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -22,7 +19,6 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardElevation
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -30,152 +26,87 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.jetpack.ui.LoginScreen
+import com.example.jetpack.RecyclerView.User
+import com.example.jetpack.RecyclerView.dummyData
 import com.example.jetpack.ui.theme.JetPackTheme
 
 class MainActivity : ComponentActivity() {
-    @OptIn(ExperimentalMaterial3Api::class)
+    @OptIn(ExperimentalMaterial3Api::class) // Opt-in for Experimental API usage
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge() // Ensure this method is defined
+        enableEdgeToEdge() // A method that could be for enabling edge-to-edge display (ensure it's defined in your project)
+
         setContent {
-            JetPackTheme { // Ensure JetPackTheme is properly defined in your app
-                Surface(color = MaterialTheme.colorScheme.background) {
+            JetPackTheme { // Applies your app's custom theme
+                Surface(color = MaterialTheme.colorScheme.background) { // Surface for the background color
                     Scaffold(
-                        modifier = Modifier.fillMaxSize(),
-                        topBar = {
+                        modifier = Modifier.fillMaxSize(), // Fills the screen
+                        topBar = { // Top app bar with title and navigation icons
                             TopAppBar(
                                 title = {
-                                    Text("App Name") // Set your app name here
+                                    Text("App Name") // The app's title
                                 },
-                                navigationIcon = {
+                                navigationIcon = { // Icon on the left side (menu button)
                                     IconButton(onClick = {
-                                        // Navigation icon click logic here
+                                        // Logic for opening menu
                                     }) {
-                                        Icon(
-                                            imageVector = Icons.Filled.Menu,
-                                            contentDescription = "Menu"
-                                        )
+                                        Icon(imageVector = Icons.Filled.Menu, contentDescription = "Menu")
                                     }
                                 },
-                                actions = {
+                                actions = { // Icons on the right side (search and notifications)
                                     IconButton(onClick = {
-                                        // Search icon click logic here
+                                        // Logic for search
                                     }) {
-                                        Icon(
-                                            imageVector = Icons.Filled.Search,
-                                            contentDescription = "Search"
-                                        )
+                                        Icon(imageVector = Icons.Filled.Search, contentDescription = "Search")
                                     }
                                     IconButton(onClick = {
-                                        // Notifications icon click logic here
+                                        // Logic for notifications
                                     }) {
-                                        Icon(
-                                            imageVector = Icons.Filled.Notifications,
-                                            contentDescription = "Notifications"
-                                        )
+                                        Icon(imageVector = Icons.Filled.Notifications, contentDescription = "Notifications")
                                     }
                                 }
                             )
                         },
-                        floatingActionButton = {
+                        floatingActionButton = { // Floating action button at the bottom right
                             FloatingActionButton(onClick = {
-                                // Floating Action Button click logic here
+                                // Action for FAB click
                             }) {
                                 Icon(imageVector = Icons.Filled.Add, contentDescription = "Add")
                             }
                         }
-                    ) { innerPadding ->
-
-                        RecyclerView(data = dummyData())
-                        // Content inside the Scaffold
-//                        LoginScreen(Modifier.padding(innerPadding))
+                    ) { innerPadding -> // Content inside the Scaffold
+                        Greeting("Android") // Calls Greeting composable
                     }
                 }
             }
         }
     }
 
+    // Greeting composable
     @Composable
     fun Greeting(name: String, modifier: Modifier = Modifier) {
         Text(
-            text = "Hello $name!",
+            text = "Hello $name!", // Displays a greeting message
             modifier = modifier
         )
     }
 
+    // Preview of the Greeting composable for Android Studio
     @Preview(showBackground = true)
     @Composable
     fun GreetingPreview() {
-        JetPackTheme {
-            Greeting("Android")
+        JetPackTheme { // Applies theme in the preview
+            Greeting("Android") // Preview of the greeting with "Android" name
         }
-
-    }
-
-    @Composable
-    fun ShowSwitch(modifier: PaddingValues) {
-        val isChecked = remember {
-            mutableStateOf(true)
-        }
-        Switch(
-            checked = isChecked.value,
-            onCheckedChange = {
-                isChecked.value = it
-            },
-            modifier = Modifier.run {
-                size(20.dp)
-                padding(100.dp)
-            }
-        )
     }
 }
 
-@Composable
-fun EachRow(user: User) {
-    Card(
-        modifier = Modifier.padding(horizontal = 8.dp, vertical = 8.dp).fillMaxWidth(),
-        shape = RoundedCornerShape(CornerSize(10.dp)),
-//        elevation = CardElevation(2.dp)
-    ) {
-        Row (
-            modifier = Modifier.padding(5.dp)
-        ){
-            Image(imageVector = Icons.Filled.Home, contentDescription = "",
-                 modifier = Modifier
-                     .padding(8.dp)
-                     .size(80.dp)
-                     .align(Alignment.CenterVertically)
-                     .clip(
-                         RoundedCornerShape(8.dp)
-                     )
-            )
-            Text(text = user.Title, modifier = Modifier.padding(8.dp))
-        }
-    }
 
-
-}
-
-
-@Composable
-fun RecyclerView(data:List<User>) {
-    LazyColumn (){
-        items(data){ user ->
-            EachRow(user = user)
-        }
-    }
-
-}

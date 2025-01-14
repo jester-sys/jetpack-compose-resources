@@ -1,4 +1,4 @@
-package com.example.jetpack.ui
+package com.example.jetpack.LoginScreen
 
 import android.content.Context
 import android.widget.Toast
@@ -28,17 +28,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun LoginScreen(modifier: Modifier = Modifier) {
+fun LoginScreen() {
+    // State variables for username and password
     val username = remember { mutableStateOf("") }
     val password = remember { mutableStateOf("") }
-    val context = LocalContext.current // Retrieve context for Toast
+    val context = LocalContext.current // For showing Toast messages
 
+    // Main layout
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(20.dp),
         verticalArrangement = Arrangement.Center
     ) {
+        // Welcome messages
         Text(
             text = "Hello Again!!",
             color = Color.Red,
@@ -61,6 +64,7 @@ fun LoginScreen(modifier: Modifier = Modifier) {
             fontWeight = FontWeight.Bold
         )
 
+        // Username input
         OutlinedTextField(
             value = username.value,
             onValueChange = { username.value = it },
@@ -72,8 +76,9 @@ fun LoginScreen(modifier: Modifier = Modifier) {
             modifier = Modifier.fillMaxWidth()
         )
 
-        Spacer(modifier = Modifier.height(16.dp)) // Add spacing between fields
+        Spacer(modifier = Modifier.height(16.dp)) // Spacing
 
+        // Password input
         OutlinedTextField(
             value = password.value,
             onValueChange = { password.value = it },
@@ -85,8 +90,9 @@ fun LoginScreen(modifier: Modifier = Modifier) {
             modifier = Modifier.fillMaxWidth()
         )
 
-        Spacer(modifier = Modifier.height(16.dp)) // Add spacing before the button
+        Spacer(modifier = Modifier.height(16.dp)) // Spacing
 
+        // Login button
         OutlinedButton(
             onClick = {
                 logged(context, username.value, password.value)
@@ -98,6 +104,7 @@ fun LoginScreen(modifier: Modifier = Modifier) {
     }
 }
 
+// Function to validate login credentials
 private fun logged(context: Context, username: String, password: String) {
     if (username == "jks" && password == "1234") {
         Toast.makeText(context, "Logged in!", Toast.LENGTH_LONG).show()
