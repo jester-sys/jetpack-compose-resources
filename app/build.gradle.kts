@@ -52,6 +52,8 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.ui.test.android)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -62,6 +64,24 @@ dependencies {
     // Accompanist Pager
     implementation ("com.google.accompanist:accompanist-pager:0.24.13-rc")
     implementation ("com.google.accompanist:accompanist-pager-indicators:0.24.13-rc")
+    // Navigation component for Jetpack Compose
+    implementation ("androidx.navigation:navigation-compose:2.7.0")
+
+    // Voyager Core
+    implementation("cafe.adriel.voyager:voyager-navigator:1.0.0-rc06")
+
+    // Optional modules (use only what you need):
+    // Animations for screen transitions
+    implementation("cafe.adriel.voyager:voyager-transitions:1.0.0-rc06")
+
+    // Bottom sheet navigation
+    implementation("cafe.adriel.voyager:voyager-bottom-sheet-navigator:1.0.0-rc06")
+
+    // Tab navigation
+    implementation("cafe.adriel.voyager:voyager-tab-navigator:1.0.0-rc06")
+
+    // AndroidX ViewModel integration
+    implementation("cafe.adriel.voyager:voyager-androidx:1.0.0-rc06")
 
 
 }
