@@ -1,4 +1,4 @@
-package com.example.jetpack.navigationComponent
+package com.example.jetpack.CheckBox
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -7,11 +7,10 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import com.example.jetpack.navigationComponent.navigation.StartNavigation
-import com.example.jetpack.state_management.ShowWidget
 import com.example.jetpack.ui.theme.JetPackTheme
 
 
-class NavigationActivity: ComponentActivity() {
+class CheckBoxActivity: ComponentActivity() {
 
     @OptIn(ExperimentalMaterial3Api::class) // Using Experimental API for Material 3
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +21,7 @@ class NavigationActivity: ComponentActivity() {
                 Surface(
                     color = MaterialTheme.colorScheme.background // Set the background color from Material Theme
                 ) {
-                    StartNavigation(this)
+                    CheckBoxUi()
                 }
             }
         }
