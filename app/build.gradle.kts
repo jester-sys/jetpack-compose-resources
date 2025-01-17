@@ -83,5 +83,8 @@ dependencies {
     // AndroidX ViewModel integration
     implementation("cafe.adriel.voyager:voyager-androidx:1.0.0-rc06")
 
+    implementation ("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+    implementation ("com.google.accompanist:accompanist-flowlayout:0.26.4-beta")
+
 
 }
